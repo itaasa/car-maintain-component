@@ -1,2 +1,8 @@
-<h1>{{ maintenance.description }}</h1>
-<h2>{{ maintenance.frequency }}</h2>
+<h2>
+  {{ maintenance.description }} | Perform every: {{ maintenance.frequency }} kms
+</h2>
+<ul>
+  <li *ngFor="let history of maintenance.history">
+    <app-history [history]="history"></app-history>
+  </li>
+</ul>

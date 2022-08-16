@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Car } from '../models/car.interface';
+import { subaruBrz } from '../mocks/car-mocks';
 
 @Component({
   selector: 'app-car',
@@ -7,11 +8,7 @@ import { Car } from '../models/car.interface';
   styleUrls: ['./car.component.scss'],
 })
 export class CarComponent implements OnInit {
-  @Input() car: Car = {
-    make: 'Subaru',
-    model: 'BRZ',
-    year: 2014,
-  };
+  @Input() car: Car = subaruBrz;
 
   constructor() {}
 

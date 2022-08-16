@@ -1,0 +1,6 @@
+<app-car [car]="carSchedule.car"></app-car>
+<ul>
+  <li *ngFor="let maintenance of carSchedule.maintenances">
+    <app-maintenance [maintenance]="maintenance"></app-maintenance>
+  </li>
+</ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { oilChangeHistoryMock } from '../mocks/history-mocks';
 
 @Component({
@@ -7,7 +7,7 @@ import { oilChangeHistoryMock } from '../mocks/history-mocks';
   styleUrls: ['./history.component.scss'],
 })
 export class HistoryComponent implements OnInit {
-  public history = oilChangeHistoryMock[0];
+  @Input() history = oilChangeHistoryMock[0];
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,4 +1,4 @@
-import { Car } from '../interfaces/car.interface';
+import { Car } from '../models/car.interface';
 
 export const subaruBrz: Car = {
   make: 'Subaru',

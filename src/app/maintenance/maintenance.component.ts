@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { oilMaintenance } from '../mocks/maintenance-mocks';
-import { Maintenance } from '../models/maintenance.interface';
 
 @Component({
   selector: 'app-maintenance',
@@ -8,7 +7,7 @@ import { Maintenance } from '../models/maintenance.interface';
   styleUrls: ['./maintenance.component.scss'],
 })
 export class MaintenanceComponent implements OnInit {
-  public testMaintenance = oilMaintenance;
+  public maintenance = oilMaintenance;
 
   constructor() {}
 

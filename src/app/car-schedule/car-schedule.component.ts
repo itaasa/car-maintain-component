@@ -34,7 +34,7 @@ export class CarScheduleComponent implements OnInit {
       .select(getCarSchedule)
       .subscribe((carSchedule) => (newCarSchedule = carSchedule));
 
-    // TODO: Replace the below with a modal that gathers this information.
+    // TODO: Create a new component for adding maintenance and editing it's history. This logic will be moved there, including this button.
     const history: History = {
       dateCompleted: new Date(),
       mileage: 190000,

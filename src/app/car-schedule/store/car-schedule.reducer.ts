@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { CarSchedule } from 'src/app/models/car-schedule.interface';
 import { Car } from 'src/app/models/car.interface';
 import * as CarScheduleActions from './car-schedule.actions';
+import { getCarScheduleState } from './car-schedule.selectors';
 
 export interface CarScheduleState {
   carSchedule: CarSchedule;
@@ -32,6 +33,18 @@ export const carScheduleReducer = createReducer<CarScheduleState>(
       return {
         ...state,
         carSchedule: action.carSchedule,
+      };
+    }
+  ),
+  on(
+    CarScheduleActions.updateMaintenance,
+    (state, action): CarScheduleState => {
+      return {
+        ...state,
+        carSchedule: {
+          ...state.carSchedule,
+          maintenances: action.maintenances,
+        },
       };
     }
   )

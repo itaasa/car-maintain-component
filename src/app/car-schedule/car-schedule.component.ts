@@ -9,7 +9,6 @@ import {
 } from './store/car-schedule.actions';
 import { Maintenance } from '../models/maintenance.interface';
 import { History } from '../models/history.interface';
-import { Car } from '../models/car.interface';
 import { mockCarSchedule } from '../mocks/car-schedule-mocks';
 
 @Component({
@@ -29,12 +28,13 @@ export class CarScheduleComponent implements OnInit {
   }
 
   addMaintenance(): void {
-    let testCarSchedule: CarSchedule = mockCarSchedule;
+    let newCarSchedule: CarSchedule = mockCarSchedule;
 
     this.store
       .select(getCarSchedule)
-      .subscribe((carSchedule) => (testCarSchedule = carSchedule));
+      .subscribe((carSchedule) => (newCarSchedule = carSchedule));
 
+    // TODO: Replace the below with a modal that gathers this information.
     const history: History = {
       dateCompleted: new Date(),
       mileage: 190000,
@@ -47,15 +47,10 @@ export class CarScheduleComponent implements OnInit {
       history: [history],
     };
 
-    let copyMaintenances = testCarSchedule.maintenances;
+    let maintenances = newCarSchedule.maintenances;
 
-    copyMaintenances = [...testCarSchedule.maintenances, maintenance];
+    maintenances = [...newCarSchedule.maintenances, maintenance];
 
-    testCarSchedule = {
-      ...testCarSchedule,
-      maintenances: copyMaintenances,
-    };
-
-    this.store.dispatch(updateMaintenance({ carSchedule: testCarSchedule }));
+    this.store.dispatch(updateMaintenance({ maintenances }));
   }
 }

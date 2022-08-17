@@ -5,7 +5,7 @@ import { CarScheduleService } from 'src/app/car-schedule.service';
 import { CarScheduleState } from './car-schedule.reducer';
 import * as CarScheduleActions from './car-schedule.actions';
 import { withLatestFrom, switchMap, map } from 'rxjs';
-import { getCarScheduleId } from './car-schedule.selectors';
+import { getCarScheduleId, getCarSchedule } from './car-schedule.selectors';
 
 @Injectable()
 export class CarScheduleEffects {
@@ -37,9 +37,10 @@ export class CarScheduleEffects {
   updateMaintenance$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CarScheduleActions.updateMaintenance),
-      switchMap((action) =>
+      withLatestFrom(this.store.select(getCarSchedule)),
+      switchMap(([_, carSchedule]) =>
         this.carScheduleService
-          .updateMaintenance(action.carSchedule)
+          .updateMaintenance(carSchedule)
           .pipe(
             map((updatedId) =>
               CarScheduleActions.updateMaintenanceSuccess({ updatedId })

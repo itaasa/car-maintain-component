@@ -19,4 +19,9 @@ export class CarScheduleService {
     const url = this.apiUrl + `car-schedule/${id}`;
     return this.httpClient.get<CarSchedule>(url);
   }
+
+  public updateMaintenance(carSchedule: CarSchedule): Observable<string> {
+    const url = this.apiUrl + `car-schedule/maintenance`;
+    return this.httpClient.put<string>(url, carSchedule, this.httpOptions);
+  }
 }

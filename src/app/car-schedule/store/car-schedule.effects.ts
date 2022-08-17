@@ -17,7 +17,10 @@ export class CarScheduleEffects {
 
   loadCarSchedule$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CarScheduleActions.loadCarSchedule),
+      ofType(
+        CarScheduleActions.loadCarSchedule,
+        CarScheduleActions.updateMaintenanceSuccess
+      ),
       withLatestFrom(this.store.select(getCarScheduleId)),
       switchMap(([_, carScheduleId]) =>
         this.carScheduleService
@@ -25,6 +28,21 @@ export class CarScheduleEffects {
           .pipe(
             map((carSchedule) =>
               CarScheduleActions.loadCarScheduleSuccess({ carSchedule })
+            )
+          )
+      )
+    );
+  });
+
+  updateMaintenance$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CarScheduleActions.updateMaintenance),
+      switchMap((action) =>
+        this.carScheduleService
+          .updateMaintenance(action.carSchedule)
+          .pipe(
+            map((updatedId) =>
+              CarScheduleActions.updateMaintenanceSuccess({ updatedId })
             )
           )
       )

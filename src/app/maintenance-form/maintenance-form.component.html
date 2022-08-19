@@ -1,0 +1,9 @@
+<form [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()">
+  <label for="description">Description: </label>
+  <input id="description" type="text" formControlName="description" />
+
+  <label for="frequency">Frequency: </label>
+  <input id="frequency" type="number" formControlName="frequency" />
+
+  <button type="submit">Add Maintenance</button>
+</form>

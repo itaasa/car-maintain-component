@@ -1,0 +1,12 @@
+<form [formGroup]="historyForm" (ngSubmit)="onSubmit()">
+  <label for="dateCompleted">Date Completed: </label>
+  <input id="dateCompleted" type="date" formControlName="dateCompleted" />
+
+  <label for="mileage">At Mileage: </label>
+  <input id="mileage" type="number" formControlName="mileage" />
+
+  <label for="cost">Cost: </label>
+  <input id="cost" type="number" formControlName="cost`" />
+
+  <button type="submit">Save</button>
+</form>

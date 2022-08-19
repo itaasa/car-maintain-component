@@ -1,0 +1,6 @@
+<button (click)="addHistory()">Completed a Maintenance? Add it here</button>
+<ul>
+  <li *ngFor="let history of historyList">
+    <app-history [history]="history"></app-history>
+  </li>
+</ul>

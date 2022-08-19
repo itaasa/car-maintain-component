@@ -10,6 +10,11 @@ export const loadCarScheduleSuccess = createAction(
   props<{ carSchedule: CarSchedule }>()
 );
 
+export const addMaintenance = createAction(
+  `${actionName} Add Maintenance`,
+  props<{ maintenance: Maintenance }>()
+);
+
 export const updateMaintenance = createAction(
   `${actionName} Update Maintenance`,
   props<{ maintenances: Maintenance[] }>()

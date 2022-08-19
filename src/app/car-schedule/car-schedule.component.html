@@ -3,7 +3,10 @@
   <button (click)="addMaintenance()">Add Maintenance</button>
   <ul>
     <li *ngFor="let maintenance of carSchedule.maintenances">
-      <app-maintenance [maintenance]="maintenance"></app-maintenance>
+      <app-maintenance
+        [maintenance]="maintenance"
+        [index]="carSchedule.maintenances.indexOf(maintenance)"
+      ></app-maintenance>
     </li>
   </ul>
 </div>

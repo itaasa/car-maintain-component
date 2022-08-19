@@ -38,7 +38,7 @@ export const carScheduleReducer = createReducer<CarScheduleState>(
     }
   ),
   on(
-    CarScheduleActions.updateMaintenance,
+    CarScheduleActions.updateMaintenances,
     (state, action): CarScheduleState => {
       return {
         ...state,
@@ -57,5 +57,31 @@ export const carScheduleReducer = createReducer<CarScheduleState>(
         maintenances: [...state.carSchedule.maintenances, action.maintenance],
       },
     };
-  })
+  }),
+  on(
+    CarScheduleActions.updateSingleMaintenance,
+    (state, action): CarScheduleState => {
+      return {
+        ...state,
+        carSchedule: {
+          ...state.carSchedule,
+          maintenances: updateSingleMaintenance(
+            state.carSchedule.maintenances,
+            action.maintenance,
+            action.index
+          ),
+        },
+      };
+    }
+  )
 );
+
+function updateSingleMaintenance(
+  maintenances: Maintenance[],
+  maintenance: Maintenance,
+  index: number
+): Maintenance[] {
+  let maintenancesCopy = [...maintenances];
+  maintenancesCopy[index] = maintenance;
+  return maintenancesCopy;
+}

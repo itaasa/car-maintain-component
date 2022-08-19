@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import {
   addMaintenance,
-  updateMaintenance,
+  updateSingleMaintenance,
 } from '../car-schedule/store/car-schedule.actions';
 import { Maintenance } from '../models/maintenance.interface';
-import { MatDialogRef } from '@angular/material/dialog';
-import { TemplateBindingParseResult } from '@angular/compiler';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-maintenance-form',
@@ -15,6 +14,7 @@ import { TemplateBindingParseResult } from '@angular/compiler';
   styleUrls: ['./maintenance-form.component.scss'],
 })
 export class MaintenanceFormComponent implements OnInit {
+  inEditMode: boolean = false;
   maintenanceForm = new FormGroup({
     description: new FormControl(''),
     frequency: new FormControl(''),
@@ -22,9 +22,20 @@ export class MaintenanceFormComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<MaintenanceFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private store: Store
-  ) {}
-  ngOnInit(): void {}
+  ) {
+    this.inEditMode = this.data != null;
+  }
+
+  ngOnInit(): void {
+    if (this.inEditMode) {
+      this.maintenanceForm.setValue({
+        description: this.data.description,
+        frequency: this.data.frequency.toString(),
+      });
+    }
+  }
 
   onSubmit(): void {
     const maintenance: Maintenance = {
@@ -33,7 +44,13 @@ export class MaintenanceFormComponent implements OnInit {
       history: [],
     };
 
-    this.store.dispatch(addMaintenance({ maintenance }));
+    if (!this.inEditMode) {
+      this.store.dispatch(addMaintenance({ maintenance }));
+    } else {
+      this.store.dispatch(
+        updateSingleMaintenance({ maintenance, index: this.data.index })
+      );
+    }
 
     this.dialogRef.close();
   }

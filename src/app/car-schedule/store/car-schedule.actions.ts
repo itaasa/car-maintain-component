@@ -15,7 +15,12 @@ export const addMaintenance = createAction(
   props<{ maintenance: Maintenance }>()
 );
 
-export const updateMaintenance = createAction(
+export const updateSingleMaintenance = createAction(
+  `${actionName} Edit Maintenance`,
+  props<{ maintenance: Maintenance; index: number }>()
+);
+
+export const updateMaintenances = createAction(
   `${actionName} Update Maintenance`,
   props<{ maintenances: Maintenance[] }>()
 );

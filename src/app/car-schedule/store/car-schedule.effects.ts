@@ -37,8 +37,9 @@ export class CarScheduleEffects {
   updateMaintenance$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(
-        CarScheduleActions.updateMaintenance,
-        CarScheduleActions.addMaintenance
+        CarScheduleActions.updateMaintenances,
+        CarScheduleActions.addMaintenance,
+        CarScheduleActions.updateSingleMaintenance
       ),
       withLatestFrom(this.store.select(getCarSchedule)),
       switchMap(([_, carSchedule]) =>

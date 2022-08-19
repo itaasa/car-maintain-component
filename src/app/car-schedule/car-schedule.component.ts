@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { CarSchedule } from '../models/car-schedule.interface';
 import { getCarSchedule } from './store/car-schedule.selectors';
 import { loadCarSchedule } from './store/car-schedule.actions';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MaintenanceFormComponent } from '../maintenance-form/maintenance-form.component';
 
 @Component({
@@ -24,12 +24,6 @@ export class CarScheduleComponent implements OnInit {
   }
 
   addMaintenance(): void {
-    let dialogRef = this.dialog.open(MaintenanceFormComponent, {
-      width: '250px',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    this.dialog.open(MaintenanceFormComponent, { width: '250px' });
   }
 }

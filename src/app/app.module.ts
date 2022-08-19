@@ -12,6 +12,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { carScheduleReducer } from './car-schedule/store/car-schedule.reducer';
 import { CarScheduleEffects } from './car-schedule/store/car-schedule.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { MaintenanceFormComponent } from './maintenance-form/maintenance-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { HttpClientModule } from '@angular/common/http';
     MaintenanceComponent,
     HistoryComponent,
     CarScheduleComponent,
+    MaintenanceFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({ carSchedule: carScheduleReducer }, {}),
     EffectsModule.forRoot([CarScheduleEffects]),
   ],

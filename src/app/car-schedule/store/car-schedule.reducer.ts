@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { CarSchedule } from 'src/app/models/car-schedule.interface';
 import { Car } from 'src/app/models/car.interface';
+import { Maintenance } from 'src/app/models/maintenance.interface';
 import * as CarScheduleActions from './car-schedule.actions';
 import { getCarScheduleState } from './car-schedule.selectors';
 
@@ -47,5 +48,14 @@ export const carScheduleReducer = createReducer<CarScheduleState>(
         },
       };
     }
-  )
+  ),
+  on(CarScheduleActions.addMaintenance, (state, action): CarScheduleState => {
+    return {
+      ...state,
+      carSchedule: {
+        ...state.carSchedule,
+        maintenances: [...state.carSchedule.maintenances, action.maintenance],
+      },
+    };
+  })
 );

@@ -14,6 +14,8 @@ import { CarScheduleEffects } from './car-schedule/store/car-schedule.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { MaintenanceFormComponent } from './maintenance-form/maintenance-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
     StoreModule.forRoot({ carSchedule: carScheduleReducer }, {}),
     EffectsModule.forRoot([CarScheduleEffects]),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

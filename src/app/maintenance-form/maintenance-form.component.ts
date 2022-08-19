@@ -5,10 +5,9 @@ import {
   addMaintenance,
   updateMaintenance,
 } from '../car-schedule/store/car-schedule.actions';
-import { getCarSchedule } from '../car-schedule/store/car-schedule.selectors';
-import { mockCarSchedule } from '../mocks/car-schedule-mocks';
-import { CarSchedule } from '../models/car-schedule.interface';
 import { Maintenance } from '../models/maintenance.interface';
+import { MatDialogRef } from '@angular/material/dialog';
+import { TemplateBindingParseResult } from '@angular/compiler';
 
 @Component({
   selector: 'app-maintenance-form',
@@ -21,7 +20,10 @@ export class MaintenanceFormComponent implements OnInit {
     frequency: new FormControl(''),
   });
 
-  constructor(private store: Store) {}
+  constructor(
+    public dialogRef: MatDialogRef<MaintenanceFormComponent>,
+    private store: Store
+  ) {}
   ngOnInit(): void {}
 
   onSubmit(): void {
@@ -32,5 +34,7 @@ export class MaintenanceFormComponent implements OnInit {
     };
 
     this.store.dispatch(addMaintenance({ maintenance }));
+
+    this.dialogRef.close();
   }
 }

@@ -1,5 +1,6 @@
 <div *ngIf="carSchedule$ | async as carSchedule">
   <app-car [car]="carSchedule.car"></app-car>
+  <button (click)="addMaintenance()">Add Maintenance</button>
   <ul>
     <li *ngFor="let maintenance of carSchedule.maintenances">
       <app-maintenance [maintenance]="maintenance"></app-maintenance>

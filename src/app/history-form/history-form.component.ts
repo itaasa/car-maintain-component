@@ -2,7 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { addHistory } from '../car-schedule/store/car-schedule.actions';
+import {
+  addHistory,
+  loadCarSchedule,
+} from '../car-schedule/store/car-schedule.actions';
 import { History } from '../models/history.interface';
 
 @Component({
@@ -37,5 +40,6 @@ export class HistoryFormComponent implements OnInit {
     };
 
     this.store.dispatch(addHistory({ history, index: this.data.index }));
+    this.dialogRef.close();
   }
 }

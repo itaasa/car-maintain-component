@@ -12,6 +12,4 @@ export class AllHistoryComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  addHistory(): void {}
 }

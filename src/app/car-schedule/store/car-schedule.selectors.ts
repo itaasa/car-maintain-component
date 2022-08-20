@@ -22,5 +22,6 @@ export const getMaintenances = createSelector(
 
 export const getMaintenanceByIndex = createSelector(
   getMaintenances,
-  (maintenances: Maintenance[], props: any) => maintenances[props.index]
+  (maintenances: Maintenance[], props: { index: number }) =>
+    maintenances[props.index]
 );

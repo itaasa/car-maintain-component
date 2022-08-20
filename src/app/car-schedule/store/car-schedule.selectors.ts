@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Maintenance } from 'src/app/models/maintenance.interface';
 import { CarScheduleState } from './car-schedule.reducer';
 
 export const getCarScheduleState =
@@ -12,4 +13,15 @@ export const getCarSchedule = createSelector(
 export const getCarScheduleId = createSelector(
   getCarScheduleState,
   (state) => state.carScheduleId
+);
+
+export const getMaintenances = createSelector(
+  getCarSchedule,
+  (carSchedule) => carSchedule.maintenances
+);
+
+export const getMaintenanceByIndex = createSelector(
+  getMaintenances,
+  (maintenances: Maintenance[], props: { index: number }) =>
+    maintenances[props.index]
 );

@@ -16,6 +16,8 @@ import { MaintenanceFormComponent } from './maintenance-form/maintenance-form.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AllHistoryComponent } from './all-history/all-history.component';
+import { HistoryFormComponent } from './history-form/history-form.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     HistoryComponent,
     CarScheduleComponent,
     MaintenanceFormComponent,
+    AllHistoryComponent,
+    HistoryFormComponent,
   ],
   imports: [
     BrowserModule,

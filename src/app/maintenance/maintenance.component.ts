@@ -19,10 +19,11 @@ export class MaintenanceComponent implements OnInit {
 
   editMaintenance(): void {
     this.dialog.open(MaintenanceFormComponent, {
-      width: '250px',
+      width: '1000px',
       data: {
         description: this.maintenance.description,
         frequency: this.maintenance.frequency,
+        history: this.maintenance.history,
         index: this.index,
       },
     });

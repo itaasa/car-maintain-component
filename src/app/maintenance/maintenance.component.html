@@ -2,8 +2,3 @@
   {{ maintenance.description }} | Perform every: {{ maintenance.frequency }} kms
 </h2>
 <button (click)="editMaintenance()">Edit</button>
-<ul>
-  <li *ngFor="let history of maintenance.history">
-    <app-history [history]="history"></app-history>
-  </li>
-</ul>

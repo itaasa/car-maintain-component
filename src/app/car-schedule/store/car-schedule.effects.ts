@@ -39,7 +39,8 @@ export class CarScheduleEffects {
       ofType(
         CarScheduleActions.updateMaintenances,
         CarScheduleActions.addMaintenance,
-        CarScheduleActions.updateSingleMaintenance
+        CarScheduleActions.updateSingleMaintenance,
+        CarScheduleActions.addHistory
       ),
       withLatestFrom(this.store.select(getCarSchedule)),
       switchMap(([_, carSchedule]) =>
